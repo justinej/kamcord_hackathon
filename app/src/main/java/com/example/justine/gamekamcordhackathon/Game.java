@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,25 +42,16 @@ public class Game extends Activity {
     }
 
     public void moveBullets() {
-        ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
-
-        for (Bullet bullet : hichews) {
-            if(enemies.isEmpty()) {
-                for (Bullet extraBullet : bulletsToRemove) {
-                    bulletsToRemove.add(extraBullet);
-                } break;
-            }
+        for (Iterator<Bullet> it = hichews.listIterator();it.hasNext();) {
+            Bullet bullet = it.next();
+            if(enemies.isEmpty()) break;
             Enemy enemy = enemies.getLast();
             bullet.moveTo((int) enemy.getX(), (int) enemy.getY(), bullet.speed);
 
             if (bullet.didCollide(enemy)) {
-                bulletsToRemove.add(bullet);
+                it.remove();
                 enemies.remove(enemy);
             }
-        }
-
-        for (Bullet  bullet : bulletsToRemove) {
-            hichews.remove(bullet);
         }
     }
 

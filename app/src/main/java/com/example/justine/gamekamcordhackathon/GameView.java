@@ -22,6 +22,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -89,6 +90,12 @@ public class GameView extends View {
         }
         if(enemies.size() > 0 && enemies.getLast().getY() > getHeight() + 30) {
             enemies.removeLast();
+        }
+
+        for (Iterator<Bullet> it = hichews.listIterator();it.hasNext();) {
+            Bullet bullet = it.next();
+            if (bullet.x < 0 || bullet.y < 0 || bullet.x > getWidth() || bullet.y > getHeight())
+                it.remove();
         }
 
         for(Enemy enemy: enemies) {
