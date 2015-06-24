@@ -6,13 +6,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
 
+import java.util.ArrayList;
+
 
 public class Game extends Activity {
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new GameView(getApplicationContext()));
+        gameView = new GameView(getApplicationContext());
+        gameView.setEnemies(enemies);
+        setContentView(gameView);
     }
 
     @Override
