@@ -15,7 +15,7 @@ public class Game extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new GameView(getApplicationContext()));
+        setContentView(R.layout.activity_game);
     }
 
     @Override
