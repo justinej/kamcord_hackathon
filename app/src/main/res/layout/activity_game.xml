@@ -27,7 +27,8 @@
         android:src="@drawable/steven"
         android:layout_below="@+id/JimmyButton"
         android:layout_alignLeft="@+id/JimmyButton"
-        android:layout_alignStart="@+id/JimmyButton" />
+        android:layout_alignStart="@+id/JimmyButton"
+        android:onClick="executeAlex"/>
 
     <ImageButton
         android:id="@+id/JimmyButton"

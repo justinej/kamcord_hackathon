@@ -17,11 +17,14 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.ArrayList;
+
 /**
  * Created by jimmy on 6/24/15.
  */
 public class GameView extends View {
-    private Path path;
+    private Path path = null;
+    private ArrayList<Enemy> enemies;
 
     public GameView(Context context) {
         this(context, null);
@@ -29,18 +32,10 @@ public class GameView extends View {
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        path = new Path();
-        path.moveTo(0, getHeight() / 6);
-        path.lineTo(getWidth() / 6 * 5, getHeight() / 6 * 1);
-        path.lineTo(getWidth() / 6 * 5, getHeight() / 6 * 2);
-        path.lineTo(getWidth() / 6 * 1, getHeight() / 6 * 2);
-        path.lineTo(getWidth() / 6 * 1, getHeight() / 6 * 3);
-        path.lineTo(getWidth() / 6 * 5, getHeight() / 6 * 3);
-        path.lineTo(getWidth() / 6 * 5, getHeight() / 6 * 4);
-        path.lineTo(getWidth() / 6 * 1, getHeight() / 6 * 4);
-        path.lineTo(getWidth() / 6 * 1, getHeight() / 6 * 5);
-        path.lineTo(getWidth() / 6 * 5, getHeight() / 6 * 5);
-        path.lineTo(getWidth() / 6 * 5, getHeight() / 6 * 6);
+    }
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
     }
 
     public void onDraw(Canvas canvas) {
@@ -54,13 +49,7 @@ public class GameView extends View {
         paint.setAntiAlias(true);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        //paint.setColor(Color.RED);
-        //canvas.drawOval(100, 100, 400, 400, paint);
-        //canvas.drawRect(0, getHeight()/10*4, getWidth(), getHeight()/10*6, paint);
-        //path = new Path();
-        //path.moveTo(0, 0);
-        //path.lineTo(getWidth(),getHeight());
-        path = getPath(new Point[]{new Point(0, getHeight() / 6),
+        if(path==null) path = getPath(new Point[]{new Point(0, getHeight() / 6),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 1),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 2),
                 new Point(getWidth() / 6 * 1, getHeight() / 6 * 2),
@@ -71,7 +60,6 @@ public class GameView extends View {
                 new Point(getWidth() / 6 * 1, getHeight() / 6 * 5),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 5),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 6)});
-        System.out.println(path);
         canvas.drawPath(path, paint);
 
 
@@ -80,7 +68,7 @@ public class GameView extends View {
         d.draw(canvas);
     }
 
-    public Path getPath(Point[] points) {
+    public static Path getPath(Point[] points) {
         Path path = new Path();
         path.moveTo(points[0].x, points[0].y);
         for (int i = 1; i < points.length; i++) {
