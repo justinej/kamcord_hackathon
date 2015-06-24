@@ -31,8 +31,9 @@ public class Bullet {
         double x = enemy.getX();
         double y = enemy.getY();
 
-        if (-25 < x - this.x && x - this.x < 525
-                && -125 < y - this.y && y - this.y < 25) {
+        if (-25 < x - this.x && x - this.x < 50 + this.width
+                && -(25 + this.height) < y - this.y && y - this.y < this.height) {
+            enemy.diePls();
             return true;
         }
         return false;

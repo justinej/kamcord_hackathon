@@ -27,7 +27,7 @@ public class Enemy {
     }
 
     public void diePls() {
-        this.health -= 10;
+        this.health -= 30;
     }
 
     public boolean didDie() {

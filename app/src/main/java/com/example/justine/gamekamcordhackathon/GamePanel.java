@@ -4,6 +4,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.content.Context;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 /**
  * Created by justine on 6/24/15.
@@ -48,6 +49,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     public void update() {
+
 
     }
 

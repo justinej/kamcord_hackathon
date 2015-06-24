@@ -31,6 +31,7 @@ import java.util.TimerTask;
  * Created by jimmy on 6/24/15.
  */
 public class GameView extends View {
+    private int hichewX = 0;
     private Path path = null;
     public ArrayList<Bullet> hichews;
     private LinkedList<Enemy> enemies;
@@ -109,7 +110,7 @@ public class GameView extends View {
         paint2.setStyle(Paint.Style.FILL);
         //canvas.drawOval(cir.x - 20, cir.y - 20, cir.x + 20, cir.y + 20, paint2);
         //canvas.drawBitmap(bitmap, cir.x-bitmap.getWidth()/2, cir.y-bitmap.getHeight()/2, null);
-
+        
         for (Bullet d : hichews) {
             d.drawOnCanvas(canvas);
         }

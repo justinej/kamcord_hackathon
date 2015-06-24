@@ -55,12 +55,16 @@ public class Game extends Activity {
             bullet.moveTo((int) enemy.getX(), (int) enemy.getY(), bullet.speed);
             if (bullet.didCollide(enemy)) {
                 bulletsToRemove.add(bullet);
-                enemies.remove(enemy);
+                if (enemy.didDie()) {
+                    enemies.remove(enemy);
+                }
             } else {
                 for (Enemy enemy1 : enemies) {
                     if (bullet.didCollide(enemy1)) {
                         bulletsToRemove.add(bullet);
-                        enemiesToRemove.add(enemy1);
+                        if (enemy1.didDie()) {
+                            enemies.remove(enemy1);
+                        }
                         break;
                     }
                 }
@@ -68,11 +72,11 @@ public class Game extends Activity {
 
         }
 
-        for (Bullet  bullet : bulletsToRemove) {
-            hichews.remove(bullet);
+        for (Bullet bulletToRemove : bulletsToRemove) {
+            hichews.remove(bulletToRemove);
         }
-        for (Enemy enemy : enemiesToRemove) {
-            enemies.remove(enemy);
+        for (Enemy enemyToRemove: enemiesToRemove) {
+            enemies.remove(enemyToRemove);
         }
     }
 
