@@ -10,18 +10,20 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class Game extends Activity {
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private LinkedList<Enemy> enemies = new LinkedList<>();
     private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        ((GameView)findViewById(R.id.GameView)).setEnemies(enemies);
         // Can you pass enemies to the game view ^ ?
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new Task(), 0, 100);
@@ -29,7 +31,6 @@ public class Game extends Activity {
 
     class Task extends TimerTask {
         public void run() {
-
             findViewById(R.id.GameView).postInvalidate();
         }
     }
