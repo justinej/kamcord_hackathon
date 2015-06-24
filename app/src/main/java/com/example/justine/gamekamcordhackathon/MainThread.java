@@ -23,15 +23,24 @@ public class MainThread extends Thread {
     @Override
     public void run(){
         try {
-            while(running)
+            long previousTime = 0;
+            while(running) {
                 time = System.nanoTime();
+
+                if (0 == previousTime) {
+                    previousTime = time;
+                }
+
+                long dt = time - previousTime;
+
                 canvas = null;
                 System.out.println(time);
 
-            canvas = this.surfaceHolder.lockCanvas();
-            synchronized (surfaceHolder) {
-                this.gamePanel.update();
-                this.gamePanel.draw(canvas);
+                canvas = this.surfaceHolder.lockCanvas();
+                synchronized (surfaceHolder) {
+                    this.gamePanel.update(dt);
+                    this.gamePanel.draw(canvas);
+                }
             }
         } catch(Exception e){}
         finally {

@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * Created by jimmy on 6/24/15.
  */
 public class GameView extends View {
+    private int hichewX = 0;
     private Path path = null;
     private ArrayList<Enemy> enemies;
 
@@ -64,7 +65,8 @@ public class GameView extends View {
 
 
         Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.hichew, null);
-        d.setBounds(0,0,500,100);
+        d.setBounds(hichewX,0,500,100);
+        hichewX += 30;
         d.draw(canvas);
     }
 
