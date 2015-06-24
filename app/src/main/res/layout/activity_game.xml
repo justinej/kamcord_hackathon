@@ -18,7 +18,8 @@
         android:src="@drawable/alex"
         android:layout_below="@+id/StevenButton"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="executeAlex"/>
 
     <ImageButton
         android:id="@+id/StevenButton"
@@ -37,7 +38,8 @@
         android:src="@drawable/jimmy"
         android:layout_below="@+id/JustineButton"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="executeJimmy"/>
 
     <ImageButton
         android:id="@+id/JustineButton"
@@ -45,7 +47,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/justine"
         android:layout_alignRight="@+id/JimmyButton"
-        android:layout_alignEnd="@+id/JimmyButton" />
+        android:layout_alignEnd="@+id/JimmyButton"
+        android:onClick="executeJustine"/>
 
 
 
