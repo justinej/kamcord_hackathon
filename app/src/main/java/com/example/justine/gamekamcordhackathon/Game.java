@@ -85,11 +85,50 @@ public class Game extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void executeAlex(View v) {
-        Toast.makeText(this, "HELLO WORLD", Toast.LENGTH_LONG).show();
+    public void executeSteven(View v) {
+        Toast.makeText(this, "Steven: sarah gimme hichews pls", Toast.LENGTH_LONG).show();
         if (enemies.size() > 0) {
             spawnHiChew((int) v.getX(), (int) v.getY());
         }
+    }
+
+    public void executeAlex(View v) {
+        Toast.makeText(this, "Alex: what the jank", Toast.LENGTH_LONG).show();
+        if (enemies.size() > 0) {
+            spawnChipotle((int) v.getX(), (int) v.getY());
+        }
+    }
+
+    public void executeJimmy(View v) {
+        Toast.makeText(this, "Jimmy: hmmmmm", Toast.LENGTH_LONG).show();
+        if (enemies.size() > 0) {
+            spawnMandM((int) v.getX(), (int) v.getY());
+        }
+    }
+
+    public void executeJustine(View v) {
+        Toast.makeText(this, "Justine: wow, nice, topkek m8", Toast.LENGTH_LONG).show();
+        if (enemies.size() > 0) {
+            spawnBattleCats((int) v.getX(), (int) v.getY());
+        }
+    }
+
+    public void spawnChipotle(int x, int y) {
+        Bullet bullet = new Bullet(x, y, 300, 170, 50);
+        bullet.d =  ResourcesCompat.getDrawable(getResources(), R.drawable.chipotle, null);
+        hichews.add(bullet);
+    }
+
+    public void spawnMandM(int x, int y) {
+        Bullet bullet = new Bullet(x, y, 120, 120, 50);
+        bullet.d =  ResourcesCompat.getDrawable(getResources(), R.drawable.mandm, null);
+        hichews.add(bullet);
+    }
+
+    public void spawnBattleCats(int x, int y) {
+        Bullet bullet = new Bullet(x, y, 200, 170, 50);
+        bullet.d =  ResourcesCompat.getDrawable(getResources(), R.drawable.battlecats, null);
+        hichews.add(bullet);
     }
 
     public void spawnHiChew(int x, int y) {
