@@ -6,13 +6,18 @@ package com.example.justine.gamekamcordhackathon;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -77,6 +82,11 @@ public class GameView extends View {
         paint2.setStyle(Paint.Style.FILL);
         //canvas.drawOval(cir.x - 20, cir.y - 20, cir.x + 20, cir.y + 20, paint2);
         canvas.drawBitmap(bitmap, cir.x-bitmap.getWidth()/2, cir.y-bitmap.getHeight()/2, null);
+
+
+        Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.hichew, null);
+        d.setBounds(0,0,500,100);
+        d.draw(canvas);
     }
 
     public static Path getPath(Point[] points) {
