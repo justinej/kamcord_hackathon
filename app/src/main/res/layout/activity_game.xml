@@ -7,6 +7,47 @@
     android:id="@+id/textView">
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <ImageButton
+        android:id="@+id/AlexButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/alex"
+        android:background="@null"
+        android:layout_below="@+id/StevenButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/StevenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/steven"
+        android:background="@null"
+        android:layout_below="@+id/JimmyButton"
+        android:layout_alignLeft="@+id/JimmyButton"
+        android:layout_alignStart="@+id/JimmyButton" />
+
+    <ImageButton
+        android:id="@+id/JimmyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/jimmy"
+        android:background="@null"
+        android:layout_below="@+id/JustineButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/JustineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/justine"
+        android:background="@null"
+        android:layout_below="@+id/textView"
+        android:layout_alignRight="@+id/JimmyButton"
+        android:layout_alignEnd="@+id/JimmyButton" />
 
 </RelativeLayout>
