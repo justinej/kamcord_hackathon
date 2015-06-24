@@ -30,7 +30,7 @@ public class MainThread extends Thread {
                 if (0 == previousTime) {
                     previousTime = time;
                 }
-
+                // can use dt as argument in update so it is not frame-based
                 long dt = time - previousTime;
 
                 canvas = null;
@@ -38,7 +38,7 @@ public class MainThread extends Thread {
 
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.gamePanel.update(dt);
+                    this.gamePanel.update();
                     this.gamePanel.draw(canvas);
                 }
             }

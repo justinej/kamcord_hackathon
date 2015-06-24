@@ -48,10 +48,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         return super.onTouchEvent(event);
     }
 
-    public void update(long dt) {
-        System.out.println(dt);
-
-        float theta = previousTheta + (dt * SOME_CONSTANT);
+    public void update() {
 
 
     }
