@@ -86,6 +86,7 @@ public class GameView extends View {
 
         if(enemies.size()==0 || enemies.getFirst().getX() > getWidth()/18) {
             enemies.addFirst(new Enemy(0, 0, path, tim));
+            enemies.addFirst(new Enemy(0,0, path, 13000, 15, rob));
         }
         if(enemies.size() > 0 && enemies.getLast().getY() > getHeight() + 30) {
             enemies.removeLast();
