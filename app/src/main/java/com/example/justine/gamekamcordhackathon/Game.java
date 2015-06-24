@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
+import android.view.View;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
 
@@ -16,9 +19,8 @@ public class Game extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gameView = new GameView(getApplicationContext());
-        gameView.setEnemies(enemies);
-        setContentView(gameView);
+        setContentView(R.layout.activity_game);
+        // Can you pass enemies to the game view ^ ?
     }
 
     @Override
@@ -41,5 +43,9 @@ public class Game extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void executeAlex(View v) {
+        Toast.makeText(this, "HELLO WORLD", Toast.LENGTH_LONG).show();
     }
 }
