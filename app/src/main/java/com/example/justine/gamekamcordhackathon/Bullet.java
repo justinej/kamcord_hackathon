@@ -20,21 +20,22 @@ public class Bullet {
     }
 
     public void moveTo(int x, int y, int speed) {
-        int xDist = Math.abs(x - this.x);
-        int yDist = Math.abs(y - this.y);
+        int xDist = x - this.x;
+        int yDist = y - this.y;
         double pythagorean =  Math.sqrt(xDist * xDist + yDist * yDist);
         this.x += (int) (xDist / pythagorean * speed);
         this.y += (int) (yDist / pythagorean * speed);
     }
 
-    public void didCollide(Enemy enemy) {
-        int x = enemy.getX();
-        int y = enemy.getY();
+    public boolean didCollide(Enemy enemy) {
+        double x = enemy.getX();
+        double y = enemy.getY();
 
         if (-25 < x - this.x && x - this.x < 525
                 && -125 < y - this.y && y - this.y < 25) {
-            enemy.gotHit();
+            return true;
         }
+        return false;
     }
 
     public void drawOnCanvas(Canvas canvas) {

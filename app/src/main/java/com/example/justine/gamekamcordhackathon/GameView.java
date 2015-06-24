@@ -22,6 +22,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,11 +31,11 @@ import java.util.TimerTask;
  */
 public class GameView extends View {
     private Path path = null;
-    private ArrayList<Enemy> enemies;
-    private ArrayList<Drawable> hichews;
-    private Circle cir;
-    private ObjectAnimator objectAnimator;
-    private Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tim);
+    public ArrayList<Bullet> hichews;
+    private LinkedList<Enemy> enemies;
+    //private Circle cir;
+    //private ObjectAnimator objectAnimator;
+    private Bitmap tim = BitmapFactory.decodeResource(getResources(), R.drawable.tim);
 
     public GameView(Context context) {
         this(context, null);
@@ -44,12 +45,12 @@ public class GameView extends View {
         super(context, attributeSet);
     }
 
-    public void setEnemies(ArrayList<Enemy> enemies) {
+    public void setEnemies(LinkedList<Enemy> enemies) {
         this.enemies = enemies;
     }
 
     public void init() {
-        path = getPath(new Point[]{new Point(0, getHeight() / 6),
+        path = getPath(new Point[]{new Point(-20, getHeight() / 6),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 1),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 2),
                 new Point(getWidth() / 6 * 1, getHeight() / 6 * 2),
@@ -59,10 +60,10 @@ public class GameView extends View {
                 new Point(getWidth() / 6 * 1, getHeight() / 6 * 4),
                 new Point(getWidth() / 6 * 1, getHeight() / 6 * 5),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 5),
-                new Point(getWidth() / 6 * 5, getHeight() / 6 * 6)});
-        cir = new Circle(0, 0);
-        objectAnimator = ObjectAnimator.ofFloat(cir, "x", "y", path);
-        objectAnimator.setDuration(20000).start();
+                new Point(getWidth() / 6 * 5, getHeight() / 6 * 6 + 50)});
+        //cir = new Circle(0, 0);
+        //objectAnimator = ObjectAnimator.ofFloat(cir, "x", "y", path);
+        //objectAnimator.setDuration(20000).start();
     }
 
     public void onDraw(Canvas canvas) {
@@ -78,15 +79,26 @@ public class GameView extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         if(path==null) init();
         canvas.drawPath(path, paint);
+
+        if(enemies.size()==0 || enemies.getFirst().getX() > getWidth()/18) {
+            enemies.addFirst(new Enemy(0, 0, path));
+        }
+        if(enemies.size() > 0 && enemies.getLast().getY() > getHeight() + 30) {
+            enemies.removeLast();
+        }
+
+        for(Enemy enemy: enemies) {
+            canvas.drawBitmap(tim, enemy.getX()-tim.getWidth()/2, enemy.getY()-tim.getHeight()/2, null);
+        }
+
         Paint paint2 = new Paint();
         paint2.setColor(Color.GREEN);
         paint2.setStyle(Paint.Style.FILL);
         //canvas.drawOval(cir.x - 20, cir.y - 20, cir.x + 20, cir.y + 20, paint2);
-        canvas.drawBitmap(bitmap, cir.x - bitmap.getWidth() / 2, cir.y - bitmap.getHeight() / 2, null);
+        //canvas.drawBitmap(bitmap, cir.x-bitmap.getWidth()/2, cir.y-bitmap.getHeight()/2, null);
 
-        for (Drawable d : hichews) {
-            d.setBounds(0, 0, 500, 100);
-            d.draw(canvas);
+        for (Bullet d : hichews) {
+            d.drawOnCanvas(canvas);
         }
     }
 

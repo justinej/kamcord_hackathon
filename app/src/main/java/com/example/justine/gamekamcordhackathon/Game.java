@@ -1,5 +1,7 @@
 package com.example.justine.gamekamcordhackathon;
 
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,19 +12,22 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class Game extends Activity {
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    private ArrayList<Bullet> hichews = new ArrayList<Bullet>();
+    private LinkedList<Enemy> enemies = new LinkedList<>();
     private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        ((GameView)findViewById(R.id.GameView)).setEnemies(enemies);
+        ((GameView)findViewById(R.id.GameView)).hichews = hichews;
         // Can you pass enemies to the game view ^ ?
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new Task(), 0, 100);
@@ -30,7 +35,31 @@ public class Game extends Activity {
 
     class Task extends TimerTask {
         public void run() {
+            moveBullets();
             findViewById(R.id.GameView).postInvalidate();
+        }
+    }
+
+    public void moveBullets() {
+        ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
+
+        for (Bullet bullet : hichews) {
+            if(enemies.isEmpty()) {
+                for (Bullet extraBullet : bulletsToRemove) {
+                    bulletsToRemove.add(extraBullet);
+                } break;
+            }
+            Enemy enemy = enemies.getLast();
+            bullet.moveTo((int) enemy.getX(), (int) enemy.getY(), bullet.speed);
+
+            if (bullet.didCollide(enemy)) {
+                bulletsToRemove.add(bullet);
+                enemies.remove(enemy);
+            }
+        }
+
+        for (Bullet  bullet : bulletsToRemove) {
+            hichews.remove(bullet);
         }
     }
 
@@ -58,5 +87,14 @@ public class Game extends Activity {
 
     public void executeAlex(View v) {
         Toast.makeText(this, "HELLO WORLD", Toast.LENGTH_LONG).show();
+        if (enemies.size() > 0) {
+            spawnHiChew((int) v.getX(), (int) v.getY());
+        }
+    }
+
+    public void spawnHiChew(int x, int y) {
+        Bullet bullet = new Bullet(x, y, 500, 100, 50);
+        bullet.d =  ResourcesCompat.getDrawable(getResources(), R.drawable.hichew, null);
+        hichews.add(bullet);
     }
 }
