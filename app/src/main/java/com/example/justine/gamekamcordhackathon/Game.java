@@ -9,14 +9,19 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
+
 
 public class Game extends Activity {
     int stevenTextCounter = 0;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        // Can you pass enemies to the game view ^ ?
     }
 
     @Override
