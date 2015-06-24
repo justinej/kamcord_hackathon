@@ -5,11 +5,15 @@ package com.example.justine.gamekamcordhackathon;
  */
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -57,6 +61,11 @@ public class GameView extends View {
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 5),
                 new Point(getWidth() / 6 * 5, getHeight() / 6 * 6)});
         canvas.drawPath(path, paint);
+
+
+        Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.hichew, null);
+        d.setBounds(0,0,500,100);
+        d.draw(canvas);
     }
 
     public static Path getPath(Point[] points) {
