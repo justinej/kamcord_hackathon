@@ -17,6 +17,15 @@ public class Enemy {
         this.health = health;
     }
 
+    public void gotHit() {
+        this.health -= 10;
+        if (this.health <= 0) {
+            
+        }
+    }
+
+
+
     public int getX() {
         return x;
     }

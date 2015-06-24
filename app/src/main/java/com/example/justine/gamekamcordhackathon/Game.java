@@ -16,6 +16,7 @@ import java.util.TimerTask;
 
 public class Game extends Activity {
     private ArrayList<Enemy> enemies = new ArrayList<>();
+    private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     private GameView gameView;
 
     @Override
@@ -29,7 +30,6 @@ public class Game extends Activity {
 
     class Task extends TimerTask {
         public void run() {
-
             findViewById(R.id.GameView).postInvalidate();
         }
     }

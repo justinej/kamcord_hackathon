@@ -31,6 +31,7 @@ import java.util.TimerTask;
 public class GameView extends View {
     private Path path = null;
     private ArrayList<Enemy> enemies;
+    private ArrayList<Drawable> hichews;
     private Circle cir;
     private ObjectAnimator objectAnimator;
     private Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tim);
@@ -81,12 +82,12 @@ public class GameView extends View {
         paint2.setColor(Color.GREEN);
         paint2.setStyle(Paint.Style.FILL);
         //canvas.drawOval(cir.x - 20, cir.y - 20, cir.x + 20, cir.y + 20, paint2);
-        canvas.drawBitmap(bitmap, cir.x-bitmap.getWidth()/2, cir.y-bitmap.getHeight()/2, null);
+        canvas.drawBitmap(bitmap, cir.x - bitmap.getWidth() / 2, cir.y - bitmap.getHeight() / 2, null);
 
-
-        Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.hichew, null);
-        d.setBounds(0,0,500,100);
-        d.draw(canvas);
+        for (Drawable d : hichews) {
+            d.setBounds(0, 0, 500, 100);
+            d.draw(canvas);
+        }
     }
 
     public static Path getPath(Point[] points) {
