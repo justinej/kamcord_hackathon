@@ -1,6 +1,7 @@
 package com.example.justine.gamekamcordhackathon;
 
 import android.animation.ObjectAnimator;
+import android.graphics.Bitmap;
 import android.graphics.Path;
 
 /**
@@ -8,19 +9,21 @@ import android.graphics.Path;
  */
 public class Enemy {
     private float x, y, speed, health;
+    private Bitmap image;
     private ObjectAnimator objectAnimator;
 
-    public Enemy(int x, int y, Path path) {
-        this(x, y, path, 1, 100);
+    public Enemy(int x, int y, Path path, Bitmap image) {
+        this(x, y, path, 20000, 100, image);
     }
 
-    public Enemy(int x, int y, Path path, int speed, int health) {
+    public Enemy(int x, int y, Path path, int speed, int health, Bitmap image) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.health = health;
+        this.image = image;
         objectAnimator = ObjectAnimator.ofFloat(this, "x", "y", path);
-        objectAnimator.setDuration(20000).start();
+        objectAnimator.setDuration(speed).start();
     }
 
     public void diePls() {
@@ -43,5 +46,8 @@ public class Enemy {
     }
     public void setY(float y) {
         this.y = y;
+    }
+    public Bitmap getImage() {
+        return image;
     }
 }
