@@ -42,16 +42,37 @@ public class Game extends Activity {
     }
 
     public void moveBullets() {
-        for (Iterator<Bullet> it = hichews.listIterator();it.hasNext();) {
-            Bullet bullet = it.next();
-            if(enemies.isEmpty()) break;
+        ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
+        ArrayList<Enemy> enemiesToRemove = new ArrayList<Enemy>();
+
+        for (Bullet bullet : hichews) {
+            if(enemies.isEmpty()) {
+                for (Bullet extraBullet : bulletsToRemove) {
+                    bulletsToRemove.add(extraBullet);
+                } break;
+            }
             Enemy enemy = enemies.getLast();
             bullet.moveTo((int) enemy.getX(), (int) enemy.getY(), bullet.speed);
-
             if (bullet.didCollide(enemy)) {
-                it.remove();
+                bulletsToRemove.add(bullet);
                 enemies.remove(enemy);
+            } else {
+                for (Enemy enemy1 : enemies) {
+                    if (bullet.didCollide(enemy1)) {
+                        bulletsToRemove.add(bullet);
+                        enemiesToRemove.add(enemy1);
+                        break;
+                    }
+                }
             }
+
+        }
+
+        for (Bullet  bullet : bulletsToRemove) {
+            hichews.remove(bullet);
+        }
+        for (Enemy enemy : enemiesToRemove) {
+            enemies.remove(enemy);
         }
     }
 
