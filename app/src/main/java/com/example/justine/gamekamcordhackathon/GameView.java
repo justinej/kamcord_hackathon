@@ -36,6 +36,10 @@ public class GameView extends View {
     //private Circle cir;
     //private ObjectAnimator objectAnimator;
     private Bitmap tim = BitmapFactory.decodeResource(getResources(), R.drawable.tim);
+    private Bitmap le = BitmapFactory.decodeResource(getResources(), R.drawable.le);
+    private Bitmap tammie = BitmapFactory.decodeResource(getResources(), R.drawable.tammie);
+    private Bitmap rob = BitmapFactory.decodeResource(getResources(), R.drawable.rob);
+
 
     public GameView(Context context) {
         this(context, null);
