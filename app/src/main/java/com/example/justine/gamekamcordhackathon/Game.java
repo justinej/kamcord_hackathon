@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
-import android.view.Window;
 
 
 public class Game extends Activity {
@@ -14,8 +13,6 @@ public class Game extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     @Override
