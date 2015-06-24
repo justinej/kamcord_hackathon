@@ -81,14 +81,15 @@ public class GameView extends View {
         canvas.drawPath(path, paint);
 
         if(enemies.size()==0 || enemies.getFirst().getX() > getWidth()/18) {
-            enemies.addFirst(new Enemy(0, 0, path));
+            enemies.addFirst(new Enemy(0, 0, path, tim));
         }
         if(enemies.size() > 0 && enemies.getLast().getY() > getHeight() + 30) {
             enemies.removeLast();
         }
 
         for(Enemy enemy: enemies) {
-            canvas.drawBitmap(tim, enemy.getX()-tim.getWidth()/2, enemy.getY()-tim.getHeight()/2, null);
+            Bitmap im = enemy.getImage();
+            canvas.drawBitmap(im, enemy.getX()-im.getWidth()/2, enemy.getY()-im.getHeight()/2, null);
         }
 
         Paint paint2 = new Paint();
