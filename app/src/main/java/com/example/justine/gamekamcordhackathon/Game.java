@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Game extends Activity {
@@ -21,6 +23,15 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         // Can you pass enemies to the game view ^ ?
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new Task(), 0, 100);
+    }
+
+    class Task extends TimerTask {
+        public void run() {
+
+            findViewById(R.id.GameView).postInvalidate();
+        }
     }
 
     @Override
