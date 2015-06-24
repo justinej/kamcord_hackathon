@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
+import android.view.View;
+import android.widget.Toast;
+
 
 
 public class Game extends Activity {
@@ -35,5 +38,9 @@ public class Game extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void executeAlex(View v) {
+        Toast.makeText(this, "HELLO WORLD", Toast.LENGTH_LONG).show();
     }
 }

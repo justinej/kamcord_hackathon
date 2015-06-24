@@ -37,5 +37,6 @@ public class GameView extends View {
         //canvas.drawOval(100, 100, 400, 400, paint);
         canvas.drawRect(0, getHeight()/10*4, getWidth(), getHeight()/10*6, paint);
 
+
     }
 }
