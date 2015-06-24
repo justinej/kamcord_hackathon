@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 
 public class Game extends Activity {
+    int stevenTextCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,14 @@ public class Game extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void executeSteven(View v) {
+        String[] possibleTexts = {"topkek, m8", "motherf*ck", "tammie, gimme hichew", "why do I even come here", "にゃん"};
+        Toast.makeText(this, possibleTexts[stevenTextCounter], Toast.LENGTH_LONG).show();
+        stevenTextCounter = (stevenTextCounter +1) % possibleTexts.length;
+    }
     public void executeAlex(View v) {
-        Toast.makeText(this, "HELLO WORLD", Toast.LENGTH_LONG).show();
+        String[] possibleTexts = {"k"};
+        Toast.makeText(this, possibleTexts[stevenTextCounter], Toast.LENGTH_LONG).show();
+        stevenTextCounter = (stevenTextCounter +1) % possibleTexts.length;
     }
 }
